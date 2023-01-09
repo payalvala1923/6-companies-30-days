@@ -1,0 +1,17 @@
+class Solution {
+public:
+  //1814. Count Nice Pairs in an Array
+ int rev(int n) {
+    int ans= 0;
+    for (; n > 0; n /= 10)
+        ans = ans * 10 + n % 10;
+    return ans;
+}
+int countNicePairs(vector<int>& nums) {
+    unordered_map<int, int> m;
+    int ans = 0;
+    for (auto i : nums)
+        ans = (ans + m[i - rev(i)]++) % 1000000007;
+    return ans;
+}
+};
